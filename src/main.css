@@ -1,0 +1,84 @@
+html,body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 125%;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.main {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#calendar  {
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+.end {
+  color: red;
+}
+
+.day-of-week,
+.date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date-grid button {
+  padding: 10px;
+  text-align: center;
+  appearance: none;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 125%;
+  cursor: pointer;
+}
+.date-grid button:hover {
+  background: #ececec;
+  transition: background .2s ease-in-out;
+}
+.day-of-week {
+  border-bottom: 2px solid #eee;
+}
+.day-of-week div {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.red {
+  color: red;
+}
+.month-indicator {
+  text-align: center;
+}
+
+.prev, .next {
+  position: absolute;
+  top: calc(50% - 40px);
+  cursor: pointer;
+
+}
+.prev {
+  left: -100px;
+}
+.next {
+  right: -100px;
+  
+
+}
+.calendar-wrapper {
+  position: relative;
+}
+.icon-circle-left, .icon-circle-right {
+  width: 40px;
+  height: 40px;
+  fill: #ececec;
+}

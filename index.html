@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="src/main.css">
+</head>
+<body>
+ <svg>
+  <symbol id="icon-circle-left" viewBox="0 0 32 32">
+    <title>circle-left</title>
+    <path
+      d="M16 32c8.837 0 16-7.163 16-16s-7.163-16-16-16-16 7.163-16 16 7.163 16 16 16zM16 3c7.18 0 13 5.82 13 13s-5.82 13-13 13-13-5.82-13-13 5.82-13 13-13z">
+    </path>
+    <path d="M20.914 9.914l-2.829-2.829-8.914 8.914 8.914 8.914 2.828-2.828-6.086-6.086z"></path>
+  </symbol>
+  <symbol id="icon-circle-right" viewBox="0 0 32 32">
+    <title>circle-right</title>
+    <path
+      d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z">
+    </path>
+    <path d="M11.086 22.086l2.829 2.829 8.914-8.914-8.914-8.914-2.828 2.828 6.086 6.086z"></path>
+  </symbol>
+ </svg>
+ <section class="main">
+   <h2 class="month-indicator"></h2>
+   <div class="calendar-wrapper">
+    <span class="prev">
+      <svg class="icon icon-circle-left">
+        <use xlink:href="#icon-circle-left"></use>
+      </svg>
+    </span>
+    <div id="calendar">
+      <div class="day-of-week">
+        <div class="end">S</div>
+        <div>M</div>
+        <div>T</div>
+        <div>W</div>
+        <div>T</div>
+        <div>F</div>
+        <div class="end">S</div>
+      </div>
+      <div class="date-grid" id="date-grid">
+        
+      </div>
+    </div>
+    <span class="next">
+      <svg class="icon icon-circle-right">
+        <use xlink:href="#icon-circle-right"></use>
+      </svg>
+    </span>
+   </div>
+
+   <!-- <table id="calendar">
+     <thead>
+       <t>
+         <th class="end">S</th>
+         <th>M</th>
+         <th>T</th>
+         <th>W</th>
+         <th>Th</th>
+         <th>F</th>
+         <th class="end">S</th>
+       </tr>
+     </thead>
+     <tbody id="calendar-body"></tbody>
+   </table> -->
+ </section>
+  <script src="dist/main.js"></script>
+</body>
+</html>
