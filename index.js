@@ -6,15 +6,15 @@ class App {
   constructor() {
     // imports here 
     let calendar = new Calendar();
-    let prev = document.querySelector('.prev').addEventListener('click', function (e) {
-      e.preventDefault();
-      calendar.previous();
-    })
+    // let prev = document.querySelector('.prev').addEventListener('click', function (e) {
+    //   e.preventDefault();
+    //   calendar.previous();
+    // })
 
-    let next = document.querySelector('.next').addEventListener('click', function (e) {
-      e.preventDefault();
-      calendar.nextMonth();
-    })
+    // let next = document.querySelector('.next').addEventListener('click', function (e) {
+    //   e.preventDefault();
+    //   calendar.nextMonth();
+    // })
     
   }
 }
