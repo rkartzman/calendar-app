@@ -1,5 +1,5 @@
 import { totalDaysInMonth } from '../util/dates';
-
+import NanoEvents from 'nanoevents'
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 class CalendarState {
@@ -7,12 +7,15 @@ class CalendarState {
   daysGrid;
   month;
   year;
+  emitter = new NanoEvents()
+
   constructor() {
     var today = new Date();
     
     this.year = today.getFullYear();
     this.month = today.getMonth();
     this.updateDaysGrid();
+
     // this.nextMonth = this.nextMonth.bind(this);
     var that = this;
     let next = document.querySelector('.next').addEventListener('click', function (e) {
@@ -32,7 +35,9 @@ class CalendarState {
   }
 
   previousMonth() {
-
+    this.year = (this.month === 0) ? this.year - 1 : this.year;
+    this.month = (this.month === 0) ? 11 : this.month - 1;
+    this.updateDaysGrid();
   }
 
   updateDaysGrid() {
@@ -66,6 +71,11 @@ class CalendarState {
         }
       }
     }
+    this.emitter.emit('update')
+  }
+
+  onUpdate(cb) {
+    return this.emitter.on('update', cb);
   }
 }
 
@@ -75,9 +85,21 @@ class Calendar {
     console.log(this.state)
     this.monthIndicator = document.querySelector('.month-indicator');
     this.cal = document.getElementById("date-grid");
-    this.buildMonth();
+    this.initEvents();
+    this.render();
   }
+
   initEvents() {
+    let prev = document.querySelector('.prev').addEventListener('click', (e) => {
+      e.preventDefault();
+      this.state.previousMonth();
+    })
+
+    let next = document.querySelector('.next').addEventListener('click', (e) => {
+      e.preventDefault();
+      this.state.nextMonth();
+    })
+    this.state.onUpdate(this.render)
     
   }
   // nextMonth() {
@@ -92,11 +114,11 @@ class Calendar {
   //   currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
   //   this.buildMonth(currentMonth, currentYear);
   // }
-  clearMonth(month, year) {
+  renderTitle(month, year) {
     this.cal.innerHTML = '';
     this.monthIndicator.innerHTML = months[month] + " " + year;
   }
-  buildMonth() {
+  render = () => {
     const {
       state: {
         daysGrid: days,
@@ -104,7 +126,7 @@ class Calendar {
         year
       }
     } = this;
-    this.clearMonth(month, year)    
+    this.renderTitle(month, year)    
 
     for (let iRow = 0; iRow < days.length; iRow++) {
       for(let iCol = 0; iCol < days[iRow].length; iCol++ ) {
